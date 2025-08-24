@@ -4,125 +4,101 @@
   <meta charset="utf-8" />
   <title>Victoria University — Internet Technology Exam | Jean Jacques Mwisa</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Landing page for exam code: voter registration, NRM site, manifesto, modules table, and restaurant menus." />
   <style>
-    :root{
-      --bg:#0a2540;           /* deep blue */
-      --card:#0f2e57;         /* card blue */
-      --muted:#93a3b8;        /* subtle text */
-      --accent:#10b981;       /* emerald */
-      --accent-2:#f59e0b;     /* amber */
-      --surface:#0b1c33;      /* darker surface */
-      --ink:#eaf2ff;          /* main text */
-      --ring:#1f8fda;         /* focus ring */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f8f9fa;
+      color: #212529;
+      line-height: 1.6;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--ink); background:
-        radial-gradient(1200px 600px at 20% -10%, #1b3d72 0%, transparent 60%),
-        radial-gradient(1000px 500px at 120% 10%, #0b3764 0%, transparent 55%),
-        linear-gradient(180deg, var(--bg), #06182f 70%);
+    header {
+      background: #0a2540;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
     }
-    .wrap{max-width:1100px; margin:0 auto; padding:28px 18px 48px}
-    header{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px}
-    .brand h1{margin:0; font-size:clamp(20px, 3.2vw, 30px)}
-    .brand p{margin:2px 0 0; color:var(--muted); font-size:.95rem}
-    .repo a{
-      display:inline-flex; align-items:center; gap:8px;
-      background:var(--surface); color:var(--ink); text-decoration:none;
-      padding:10px 14px; border-radius:10px; border:1px solid #18355e;
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
     }
-    .repo a:focus{outline:3px solid var(--ring); outline-offset:3px}
-    main{margin-top:16px}
-    .grid{
-      display:grid; gap:18px;
-      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    header p {
+      margin: 5px 0 0;
+      font-size: 0.95rem;
     }
-    .card{
-      background:linear-gradient(180deg, var(--card), #0b284a);
-      border:1px solid #143863; border-radius:16px; padding:18px; position:relative;
-      box-shadow:0 8px 28px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.06);
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
     }
-    .card h2{margin:.2rem 0 .35rem; font-size:1.15rem}
-    .card p{margin:0 0 .9rem; color:#cfe3ff}
-    .links{display:flex; flex-wrap:wrap; gap:10px}
-    .btn{
-      --b:#1b4686;
-      display:inline-flex; align-items:center; gap:8px;
-      text-decoration:none; color:#0a1222; font-weight:700;
-      background:#eaf2ff; border:1px solid var(--b); border-radius:10px;
-      padding:9px 12px;
+    section {
+      background: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
     }
-    .btn:hover{background:#fff}
-    .btn:focus{outline:3px solid var(--ring); outline-offset:3px}
-    .badge{
-      display:inline-block; font-size:.75rem; font-weight:700;
-      padding:3px 8px; border-radius:999px; letter-spacing:.2px;
+    section h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: #0a2540;
     }
-    .emerald{background:rgba(16,185,129,.15); color:#b8f3dd; border:1px solid rgba(16,185,129,.35)}
-    .amber{background:rgba(245,158,11,.15); color:#ffe6bb; border:1px solid rgba(245,158,11,.35)}
-    footer{margin-top:36px; color:var(--muted); text-align:center; font-size:.95rem}
-    .kbd{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#091324;color:#cde2ff;border:1px solid #17345f;border-radius:6px;padding:2px 6px}
-    /* small decoration */
-    .card::after{
-      content:""; position:absolute; inset:auto 14px -6px 14px; height:1px;
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 8px 0;
+    }
+    a {
+      text-decoration: none;
+      color: #0a2540;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 15px;
+      margin-top: 30px;
+      border-top: 1px solid #dee2e6;
+      background: #f1f3f5;
+      color: #495057;
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <h1>Victoria University — Internet Technology Exam</h1>
-        <p><strong>Student:</strong> Jean Jacques Mwisa &nbsp; • &nbsp; <strong>Course:</strong> Internet Technology and Web Design</p>
-      </div>
-      <div class="repo">
-        <a href="https://github.com/JackMwisa/vu-internet-technology-exam" target="_blank" rel="noopener">
-          <span>🔗 GitHub Repo</span>
-        </a>
-      </div>
-    </header>
+  <header>
+    <h1>Victoria University — Internet Technology Exam</h1>
+    <p>Student: Jean Jacques Mwisa | Course: Internet Technology and Web Design</p>
+  </header>
 
-    <main>
-      <div class="grid">
+  <main>
+    <section>
+      <h2>Question 3 — Voter Registration & Manifesto</h2>
+      <ul>
+        <li><a href="code question 3/voter_registration.html" target="_blank">Voter Registration Form</a></li>
+        <li><a href="code question 3/NRM.html" target="_blank">NRM.html (with external link)</a></li>
+        <li><a href="code question 3/presidential-manifesto.html" target="_blank">Presidential Manifesto (Single Page)</a></li>
+        <li><a href="code question 3/mf/manifesto_frameset.html" target="_blank">Manifesto (Frameset Version)</a></li>
+      </ul>
+    </section>
 
-        <!-- QUESTION 3 -->
-        <section class="card" aria-labelledby="q3">
-          <span class="badge emerald">Question 3</span>
-          <h2 id="q3">Voter Registration, NRM Link & Manifesto</h2>
-          <p>HTML5 voter registration form, “NRM SITE” external link, plus frameset/manifesto deliverables.</p>
-          <div class="links">
-            <!-- link to folder and key files inside -->
-            <a class="btn" href="code-question-3/" aria-label="Open Question 3 folder">📁 Open Folder</a>
-            <a class="btn" href="code-question-3/NRM.html" target="_blank" rel="noopener">🟡 NRM.html</a>
-            <a class="btn" href="code-question-3/voter_registration.html" target="_blank" rel="noopener">📝 Voter Registration</a>
-            <a class="btn" href="code-question-3/manifesto_frameset.html" target="_blank" rel="noopener">🗂️ Frameset Manifesto</a>
-            <a class="btn" href="code-question-3/presidential-manifesto.html" target="_blank" rel="noopener">📃 Manifesto (Single Page)</a>
-          </div>
-        </section>
+    <section>
+      <h2>Question 4 — Modules Table & Restaurant Menu</h2>
+      <ul>
+        <li><a href="code question 4/modules.html" target="_blank">Student Modules Table</a></li>
+        <li><a href="code question 4/nyanja_menu.html" target="_blank">Nyanja Restaurant Menu</a></li>
+      </ul>
+    </section>
+  </main>
 
-        <!-- QUESTION 4 -->
-        <section class="card" aria-labelledby="q4">
-          <span class="badge amber">Question 4</span>
-          <h2 id="q4">Modules Table & Nyanja Restaurant Menus</h2>
-          <p>HTML table with personal header spanning columns, plus semantic menus with CSS.</p>
-          <div class="links">
-            <a class="btn" href="code-question-4/" aria-label="Open Question 4 folder">📁 Open Folder</a>
-            <a class="btn" href="code-question-4/modules.html" target="_blank" rel="noopener">📊 modules.html</a>
-            <a class="btn" href="code-question-4/nyanja_menu.html" target="_blank" rel="noopener">🍽️ nyanja_menu.html</a>
-          </div>
-        </section>
-
-      </div>
-    </main>
-
-    <footer>
-      Source Code: <a class="kbd" href="https://github.com/JackMwisa/vu-internet-technology-exam" target="_blank" rel="noopener">JackMwisa/vu-internet-technology-exam</a><br/>
-      Live Demo (GitHub Pages): <span class="kbd">https://jackmwisa.github.io/vu-internet-technology-exam/</span>
-    </footer>
-  </div>
+  <footer>
+    Source Code: 
+    <a href="https://github.com/JackMwisa/vu-internet-technology-exam" target="_blank">
+      github.com/JackMwisa/vu-internet-technology-exam
+    </a>
+  </footer>
 </body>
 </html>
