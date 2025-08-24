@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyanja Restaurant Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%), 
+                       url('https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop') center/cover no-repeat fixed;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 50px 20px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .restaurant-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .menu-category {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .menu-header {
+            padding: 30px;
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .breakfast-header {
+            background: linear-gradient(135deg, #fdcb6e 0%, #e17055 100%);
+        }
+
+        .lunch-header {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+        }
+
+        .dinner-header {
+            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+        }
+
+        .menu-content {
+            padding: 30px;
+        }
+
+        .menu-category > ul {
+            list-style: none;
+        }
+
+        .menu-category > ul > li {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f1f2f6;
+        }
+
+        .menu-category > ul > li:last-child {
+            border-bottom: none;
+        }
+
+        .menu-category > ul > li > strong {
+            display: block;
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            border-bottom: 3px solid #667eea;
+            position: relative;
+        }
+
+        .menu-category > ul > li > strong::before {
+            content: "";
+            margin-right: 10px;
+        }
+
+        .breakfast-header + .menu-content ul > li > strong::before {
+            content: "";
+        }
+
+        .lunch-header + .menu-content ul > li > strong::before {
+            content: "";
+        }
+
+        .dinner-header + .menu-content ul > li > strong::before {
+            content: "";
+        }
+
+        .menu-category ul ul {
+            margin-left: 0;
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .menu-category ul ul li {
+            margin-bottom: 12px;
+            padding: 12px 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .menu-category ul ul li:hover {
+            background: #e9ecef;
+            border-left-color: #667eea;
+            transform: translateX(5px);
+            cursor: pointer;
+        }
+
+        .dietary-options {
+            margin-top: 15px;
+            font-style: italic;
+            color: #6c757d;
+            background: #f1f3f4;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+
+        .dietary-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin: 0 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .vegetarian {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .gluten-free {
+            background-color: #cce5ff;
+            color: #004085;
+            border: 1px solid #99d6ff;
+        }
+
+        .vegan {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .price {
+            float: right;
+            font-weight: bold;
+            color: #28a745;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .restaurant-menu {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .menu-header {
+                font-size: 1.5rem;
+                padding: 20px;
+            }
+
+            .menu-content {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            header {
+                padding: 30px 15px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .menu-category ul ul li {
+                padding: 10px 15px;
+            }
+        }
+
+        /* Animation for menu items */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-category {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .menu-category:nth-child(1) { animation-delay: 0.1s; }
+        .menu-category:nth-child(2) { animation-delay: 0.2s; }
+        .menu-category:nth-child(3) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Nyanja Restaurant</h1>
+            <p>Exquisite Dining Experience - Breakfast, Lunch & Dinner</p>
+        </header>
+
+        <div class="restaurant-menu">
+            <!-- Breakfast Menu -->
+            <article class="menu-category">
+                <header class="menu-header breakfast-header">
+                    Breakfast Menu
+                </header>
+                <div class="menu-content">
+                    <ul>
+                        <li>
+                            <strong>Hot Buffet Selection</strong>
+                            <ul>
+                                <li>Scrambled Eggs with Fresh Herbs <span class="price">$8.99</span></li>
+                                <li>Grilled Bacon and Premium Sausages <span class="price">$10.99</span></li>
+                                <li>Golden Hash Browns <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$6.99</span></li>
+                                <li>Homestyle Baked Beans <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$5.99</span></li>
+                                <li>Fresh Seasonal Fruit Salad <span class="dietary-tag vegetarian">Vegetarian</span> <span class="dietary-tag gluten-free">Gluten-Free</span> <span class="price">$7.99</span></li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Omelet Station</strong>
+                            <ul>
+                                <li>Classic Three-Cheese Omelet <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$9.99</span></li>
+                                <li>Mushroom and Spinach Omelet <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$10.99</span></li>
+                                <li>Ham and Bell Pepper Omelet <span class="price">$11.99</span></li>
+                                <li>Mediterranean Vegetarian Delight <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$12.99</span></li>
+                            </ul>
+                            <p class="dietary-options">
+                                <em>All omelets available with egg whites upon request. Served with choice of toast or hash browns.</em>
+                            </p>
+                        </li>
+                        
+                        <li>
+                            <strong>Coffee & Bread Counter</strong>
+                            <ul>
+                                <li>Freshly Brewed Artisan Coffee <span class="dietary-tag vegetarian">Vegetarian</span> <span class="dietary-tag gluten-free">Gluten-Free</span> <span class="price">$3.99</span></li>
+                                <li>Premium Herbal Tea Selection <span class="dietary-tag vegetarian">Vegetarian</span> <span class="dietary-tag gluten-free">Gluten-Free</span> <span class="price">$3.49</span></li>
+                                <li>Buttery Artisan Croissants <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$4.99</span></li>
+                                <li>Gluten-Free Multigrain Bread <span class="dietary-tag vegetarian">Vegetarian</span> <span class="dietary-tag gluten-free">Gluten-Free</span> <span class="price">$5.99</span></li>
+                                <li>Fresh Daily Pastries <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$4.49</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- Lunch Menu -->
+            <article class="menu-category">
+                <header class="menu-header lunch-header">
+                    Lunch Menu
+                </header>
+                <div class="menu-content">
+                    <ul>
+                        <li>
+                            <strong>Gourmet Sandwiches</strong>
+                            <ul>
+                                <li>Grilled Chicken Club with Avocado <span class="price">$13.99</span></li>
+                                <li>Turkey and Swiss on Sourdough <span class="price">$12.99</span></li>
+                                <li>Caprese Sandwich with Fresh Basil <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$11.99</span></li>
+                                <li>Roast Beef with Horseradish Cream <span class="price">$14.99</span></li>
+                                <li>Vegan Quinoa Power Wrap <span class="dietary-tag vegan">Vegan</span> <span class="dietary-tag gluten-free">Gluten-Free</span> <span class="price">$12.99</span></li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Fresh Garden Salads</strong>
+                            <ul>
+                                <li>Caesar Salad with Grilled Chicken <span class="price">$14.99</span></li>
+                                <li>Mediterranean Quinoa Power Bowl <span class="dietary-tag vegetarian">Vegetarian</span> <span class="dietary-tag gluten-free">Gluten-Free</span> <span class="price">$13.99</span></li>
+                                <li>Asian Fusion Salad with Sesame Dressing <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$12.99</span></li>
+                                <li>Classic Cobb Salad with Blue Cheese <span class="price">$15.99</span></li>
+                                <li>Seasonal Fruit and Nut Salad <span class="dietary-tag vegetarian">Vegetarian</span> <span class="dietary-tag gluten-free">Gluten-Free</span> <span class="price">$11.99</span></li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Hearty Artisan Soups</strong>
+                            <ul>
+                                <li>Roasted Tomato Basil Soup <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$8.99</span></li>
+                                <li>Chicken and Wild Rice Soup <span class="dietary-tag gluten-free">Gluten-Free</span> <span class="price">$9.99</span></li>
+                                <li>Lentil and Vegetable Soup <span class="dietary-tag vegetarian">Vegetarian</span> <span class="dietary-tag gluten-free">Gluten-Free</span> <span class="price">$8.99</span></li>
+                                <li>Creamy Mushroom Barley Soup <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$9.49</span></li>
+                            </ul>
+                            <p class="dietary-options">
+                                <em>All soups served with freshly baked artisan bread or gluten-free crackers</em>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- Dinner Menu -->
+            <article class="menu-category">
+                <header class="menu-header dinner-header">
+                    Dinner Menu
+                </header>
+                <div class="menu-content">
+                    <ul>
+                        <li>
+                            <strong>Elegant Appetizers</strong>
+                            <ul>
+                                <li>Jumbo Shrimp Cocktail with Spicy Remoulade <span class="dietary-tag gluten-free">Gluten-Free</span> <span class="price">$16.99</span></li>
+                                <li>Stuffed Portobello Mushroom Caps <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$12.99</span></li>
+                                <li>Artisan Bruschetta Trio <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$11.99</span></li>
+                                <li>Smoked Salmon Platter with Capers <span class="price">$18.99</span></li>
+                                <li>Mediterranean Hummus and Vegetable Crudité <span class="dietary-tag vegetarian">Vegetarian</span> <span class="dietary-tag gluten-free">Gluten-Free</span> <span class="price">$10.99</span></li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Premium Main Courses</strong>
+                            <ul>
+                                <li>Grilled Ribeye Steak with Garlic Herb Butter <span class="dietary-tag gluten-free">Gluten-Free</span> <span class="price">$32.99</span></li>
+                                <li>Pan-Seared Atlantic Salmon with Lemon Herbs <span class="dietary-tag gluten-free">Gluten-Free</span> <span class="price">$26.99</span></li>
+                                <li>Vegetarian Eggplant Parmesan <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$19.99</span></li>
+                                <li>Herb-Crusted Rack of Lamb <span class="price">$34.99</span></li>
+                                <li>Quinoa-Stuffed Bell Peppers <span class="dietary-tag vegetarian">Vegetarian</span> <span class="dietary-tag gluten-free">Gluten-Free</span> <span class="price">$18.99</span></li>
+                                <li>Chicken Marsala with Wild Mushrooms <span class="price">$24.99</span></li>
+                            </ul>
+                            <p class="dietary-options">
+                                <em>All main courses served with choice of seasonal vegetables and rice pilaf or roasted potatoes</em>
+                            </p>
+                        </li>
+                        
+                        <li>
+                            <strong>Decadent Desserts</strong>
+                            <ul>
+                                <li>Warm Chocolate Lava Cake <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$8.99</span></li>
+                                <li>Classic Crème Brûlée <span class="dietary-tag vegetarian">Vegetarian</span> <span class="dietary-tag gluten-free">Gluten-Free</span> <span class="price">$7.99</span></li>
+                                <li>New York Style Cheesecake <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$8.49</span></li>
+                                <li>Traditional Italian Tiramisu <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$8.99</span></li>
+                                <li>Fresh Berry Parfait <span class="dietary-tag vegetarian">Vegetarian</span> <span class="dietary-tag gluten-free">Gluten-Free</span> <span class="price">$7.49</span></li>
+                                <li>Seasonal Fruit Tart <span class="dietary-tag vegetarian">Vegetarian</span> <span class="price">$7.99</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <!-- Footer -->
+        <footer style="text-align: center; padding: 40px; color: white; margin-top: 50px; background: rgba(255,255,255,0.1); border-radius: 15px; backdrop-filter: blur(10px);">
+            <h3 style="margin-bottom: 10px;">Nyanja Restaurant</h3>
+            <p style="margin-bottom: 5px;"><strong>Address:</strong> 123 Gourmet Street, Food District, City</p>
+            <p style="margin-bottom: 5px;"><strong>Phone:</strong> (555) 123-FOOD</p>
+            <p style="margin-bottom: 15px;"><strong>Hours:</strong> Daily 7:00 AM - 11:00 PM</p>
+            <p style="font-style: italic; opacity: 0.9;">Experience culinary excellence with every bite</p>
+        </footer>
+    </div>
+</body>
+</html>
